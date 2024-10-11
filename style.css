@@ -1,0 +1,110 @@
+body {
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .barra-container {
+    text-align: center;
+  }
+  
+  .input-container {
+    position: relative;
+    margin: 20px 0;
+    width: fit-content;
+  }
+  
+  .input-pesquisa {
+    width: 170px;
+    padding: 10px 40px;
+    background-color: #333; /* Fundo escuro */
+    color: #fff;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    position: relative; /* Garante que o input esteja no nível adequado para a pseudo-borda */
+    z-index: 1;
+  }
+  
+  .icon-lupa {
+    position: absolute;
+    left: 10px; /* Ajuste conforme necessário */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #007bff;
+    background-color: transparent; /* Fundo do ícone transparente */
+    z-index: 2; /* Garante que o ícone esteja acima da pseudo-borda */
+  }
+  
+  /* Efeito de Onda */
+  @keyframes wave-border {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 200%;
+    }
+  }
+  
+  .wave-effect::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #ffff00, #00ff00, #0099ff, #001aff, #a200ff, #ff0055, #ff0000, #ffff00);
+    background-size: 200%;
+    animation: wave-border 8s infinite;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  /* Efeito de Emissão */
+  @keyframes emission-border {
+    0% { border-color: #ffff00; }
+    14% { border-color: #00ff00; }
+    28% { border-color: #0099ff; }
+    42% { border-color: #001aff; }
+    57% { border-color: #a200ff; }
+    71% { border-color: #ff0055; }
+    85% { border-color: #ff0000; }
+    100% { border-color: #ffff00; }
+  }
+  
+  @keyframes emission-border-blur {
+    0% { background: #ffff00; }
+    14% { background: #00ff00; }
+    28% { background: #0099ff; }
+    42% { background: #001aff; }
+    57% { background: #a200ff; }
+    71% { background: #ff0055; }
+    85% { background: #ff0000; }
+    100% { background: #ffff00; }
+  }
+  
+  .emission-effect::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 25px;
+    background: #ffff00;
+    animation: emission-border-blur 5s infinite; /* Animação de 5 segundos infinitamente */
+    z-index: -1; /* Efeito de emissão */
+    pointer-events: none; /* Garante que o elemento não interfira na usabilidade do input */
+  }
+  
+  .emission-effect .input-pesquisa {
+    animation: emission-border 5s infinite; /* Animação de 5 segundos infinitamente */
+  }
+  
